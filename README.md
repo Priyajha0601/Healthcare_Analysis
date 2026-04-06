@@ -11,15 +11,14 @@ This project involves the design and analysis of a relational healthcare databas
 The database consists of four primary tables designed to maintain data integrity through primary and foreign key relationships:
 
 Patients: Core demographic and admission data.
-
 Diagnosis: Reference table for medical conditions.
-
 Outcomes: Tracks patient status post-discharge (e.g., Recovered, Deceased, Stable).
-
 Labs: Historical lab test results for individual patients.
 
 🔍 Deep Dive: Clinical & Operational Analysis
+
 1. Unified Clinical Patient View
+   
 Objective: To provide medical staff with a single, consolidated view of a patient's stay, including their diagnosis, discharge status, and most recent lab results.
 
 Business Value: Reduces manual data lookup time for clinicians.
@@ -31,6 +30,7 @@ JOIN diagnosis d ON p.diagnosisid = d.diagnosisid
 JOIN outcomes o ON p.outcomeid = o.outcomeid
 JOIN labs l ON p.patientid = l.patientid
 ORDER BY p.patientid;
+
 2. Diagnostic Benchmarking (Average Lab Values)
 Objective: To calculate the mean lab result for every test, grouped by diagnosis.
 
@@ -43,6 +43,7 @@ JOIN diagnosis d ON p.diagnosisid = d.diagnosisid
 JOIN labs l ON p.patientid = l.patientid
 GROUP BY d.DiagnosisName, l.TestName
 ORDER BY d.DiagnosisName, l.TestName;
+
 3. High-Risk Patient Stratification (Abnormal Flags)
 Objective: To flag patients who meet specific clinical "danger zones" (e.g., Blood Sugar > 120, Cholesterol > 200, or Hemoglobin < 13).
 
@@ -57,6 +58,7 @@ WHERE (l.testname = 'Blood Sugar' AND l.result > 120)
    OR (l.testname = 'Hemoglobin' AND l.result < 13)
 GROUP BY p.patientid, p.name
 ORDER BY AbnormalCount DESC;
+
 4. Revenue & Cost Analysis by Department
 Objective: Aggregating total treatment costs per diagnosis category.
 
@@ -68,6 +70,7 @@ FROM Healthcare.patients p
 JOIN Healthcare.diagnosis d ON p.diagnosisid = d.diagnosisid
 GROUP BY d.DiagnosisName
 ORDER BY TotalCost DESC;
+
 5. Geriatric Vulnerability Monitoring
 Objective: Filtering for male patients over 65 who were not fully "Recovered" at discharge.
 
@@ -79,6 +82,7 @@ FROM Healthcare.patients p
 JOIN Healthcare.diagnosis d ON p.diagnosisid = d.diagnosisid
 JOIN Healthcare.outcomes o ON p.outcomeid = o.outcomeid
 WHERE p.age > 65 AND gender = 'M' AND o.outcomename != 'Recovered';
+
 6. Longitudinal Patient History (Case Study: Patient 10)
 Objective: Extracting a time-series view of lab results for a specific patient.
 
@@ -90,6 +94,7 @@ FROM healthcare.labs l
 JOIN healthcare.patients p ON l.patientid = p.patientid
 WHERE p.PatientID = 10
 ORDER BY p.AdmissionDate;
+
 7. Outcome Distribution Analysis
 Objective: A cross-tabulation of Diagnosis vs. Outcome.
 
@@ -102,11 +107,10 @@ JOIN Healthcare.diagnosis d ON p.diagnosisid = d.diagnosisid
 JOIN Healthcare.outcomes o ON p.outcomeid = o.outcomeid
 GROUP BY d.diagnosisname, o.outcomename
 ORDER BY d.diagnosisname, o.outcomename DESC;
+
 🛠️ Technical Skills Demonstrated
+
 Advanced Joins: Multi-table Inner Joins to connect clinical and financial data.
-
 Aggregation & Grouping: Using SUM, AVG, and COUNT to extract high-level metrics.
-
 Conditional Filtering: Complex WHERE clauses for risk stratification.
-
 Data Modeling: Designing a schema with Primary/Foreign key constraints.
