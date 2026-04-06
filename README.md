@@ -54,6 +54,9 @@ Risk Management: This query identifies patients requiring immediate intervention
 	
 	```SQL SELECT d.diagnosisname, o.outcomename, COUNT(*) AS OutcomeCount FROM Healthcare.patients p JOIN Healthcare.diagnosis d ON p.diagnosisid = d.diagnosisid JOIN Healthcare.outcomes o ON p.outcomeid = o.outcomeid GROUP BY d.diagnosisname, o.outcomename ORDER BY d.diagnosisname, o.outcomename DESC;``` 
 
+	<img width="1577" height="527" alt="image" src="https://github.com/user-attachments/assets/5458aa5b-2153-4769-ba35-55ce14403c11" />
+
+
 ## Technical Skills Demonstrated Advanced Joins:
 - Multi-table Inner Joins to connect clinical and financial data.
 - Aggregation & Grouping: Using SUM, AVG, and COUNT to extract high-level metrics.
