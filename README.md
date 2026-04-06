@@ -51,6 +51,7 @@ Risk Management: This query identifies patients requiring immediate intervention
 6. ### Outcome Distribution Analysis Objective: 
 	A cross-tabulation of Diagnosis vs. Outcome.
 	Quality of Care: Highlights which diagnoses have high recovery rates and which have higher mortality or complication rates, driving internal quality audits.
+	
 	```SQL SELECT d.diagnosisname, o.outcomename, COUNT(*) AS OutcomeCount FROM Healthcare.patients p JOIN Healthcare.diagnosis d ON p.diagnosisid = d.diagnosisid JOIN Healthcare.outcomes o ON p.outcomeid = o.outcomeid GROUP BY d.diagnosisname, o.outcomename ORDER BY d.diagnosisname, o.outcomename DESC;``` 
 
 ## Technical Skills Demonstrated Advanced Joins:
