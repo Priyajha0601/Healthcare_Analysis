@@ -1,6 +1,6 @@
 # Healthcare Data Analysis & Patient Stratification
 Author: Priya Kumari
-Tech Stack: Databricks, MYSQL
+Tech Stack: Databricks
 
 ## Project Overview 
 This project involves the design and analysis of a relational healthcare database. The goal is to perform patient stratification, analyze treatment costs, and identify clinical abnormalities. By joining patient records with lab results and diagnostic data, the analysis provides insights into hospital efficiency and patient health outcomes.
